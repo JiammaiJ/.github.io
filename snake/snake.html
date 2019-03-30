@@ -1,0 +1,296 @@
+<!DOCTYPE HTML>
+<html lang="en">
+ <head>
+   <title></title>
+   <style type="text/css">
+           #map{width:800px;
+		        height:600px;
+				background:#ccc;
+				position:relative;
+		   }
+		  
+		   .start{
+		   	width:100px;
+		   	height:50px;
+		   	line-height:50px;
+		   	text-align:center;
+		   	color:cyan;
+		   	font-size:25px;
+		   	font-weight:bolder;
+		   	position:absolute;
+		   	left:50%;
+		   	top:50%;
+		   	background:#fff;
+		   	transform:translate(-50%,-50%);
+		   }
+		   .mask{
+		   	position:absolute;
+		   	left:0;
+		   	top:0;
+		   	width:100%;
+		   	height:100%;
+		   	background:rgba(0,0,0,.3);
+		   	z-index:1000;
+		   	display:none;
+		   }
+		   .form{
+		   	position:absolute;
+		   	left:50%;
+		   	top:50%;
+		   	transform:translate(-50%,-50%);
+		   	height:100px;
+		   }
+		   .form input{
+		   	display:block;
+		   	width:300px;
+		   	height:30px;
+		   	margin-top:10px;
+		   }
+		   .tab{
+		   	position:absolute;
+		   	right:0;
+		   	top:0;
+		   }
+   </style>
+ </head>
+ <body>
+       <div id="map">
+       	<div class="start">start</div>
+       </div>
+	   
+	   <div class="tab">
+	   		<table>
+	   			<thead>
+	   				<tr>
+	   					<td>name</td>
+	   					<td>score</td>
+	   				</tr>
+	   			</thead>
+	   			<tbody id="tbd">
+	   			</tbody>
+	   		</table>
+	   	
+	   </div>
+	   <div class="mask">
+	   <div class="form">
+	   		<form>
+	   			<input type="text" placeholder="name" id="txt">
+	   			<input type="button" value="save" id="btn">
+	   		</form>
+	   </div>
+	   </div>
+	   <audio src="tq.mp3" id="music"></audio>
+
+       <script>
+	           function my$(id){
+			      return document.getElementById(id);
+			   }
+			   var score=0;
+			   var map=my$("map");
+			   var info={};
+			   function zzz(){
+			   	 document.getElementById("mask").style.display="block";
+			   }
+			   //食物对象
+			  (function(){
+			        var elements=[];
+			     function Food(width,height,color){
+				     this.width=width||20;
+					 this.height=height||20;
+					 this.color=color||"green";
+					 this.x=0;
+					 this.y=0;
+				 }
+				 Food.prototype.init=function(map){
+				     remove();
+				     var obj=document.createElement("div");
+					 var x=parseInt(Math.random()*(map.offsetWidth/this.width));
+					 var y=parseInt(Math.random()*(map.offsetHeight/this.height));
+					 this.x=x;
+					 this.y=y;
+					 map.appendChild(obj);
+					 obj.style.position="absolute";
+					 obj.style.width=this.width+"px";
+					 obj.style.height=this.height+"px";
+					 obj.style.background=this.color;
+					 obj.style.left=this.x*this.width+"px";
+					 obj.style.top=this.y*this.height+"px";
+					 elements.push(obj);
+				 }
+				 function remove(){
+				   for(var i=0;i<elements.length;i++){
+				     var ele=elements[i];
+					ele.parentNode.removeChild(ele);
+					 elements.splice(i,1);
+				   }
+				 }
+				 window.Food=new Food();
+			  }());
+			   
+			   
+			   //蛇
+			   (function(){
+			         var elements=[];
+			        function Sanke(width,height,direction){
+					 this.width=width||20;
+					 this.height=height||20;
+					 this.direction=direction||"right";
+					 this.body=[{x:3,y:2,color:"black"},{x:2,y:2,color:"yellow"},{x:1,y:2,color:"yellow"}];
+					}
+					Sanke.prototype.init=function(map){
+					 remove();
+					 for(var i=0;i<this.body.length;i++){
+					    var obj=this.body[i];
+						var dv=document.createElement("div");
+						map.appendChild(dv);
+						dv.style.position="absolute";
+						dv.style.width=this.width+"px";
+						dv.style.height=this.height+"px";
+						dv.style.left=obj.x*this.width+"px";
+						dv.style.top=obj.y*this.height+"px";
+						dv.style.background=obj.color
+						elements.push(dv);//这里注意蛇画一次，就加进去三个小块，蛇移动一次，再画，ele里面
+					 }                   //就是六个方块了，需要在画之前先删掉，ele里面的所有元素
+					}
+					Sanke.prototype.move=function(){
+					   var i=this.body.length-1;
+					   for(;i>0;i--){
+					    this.body[i].x=this.body[i-1].x;
+						this.body[i].y=this.body[i-1].y;
+					   }
+					   switch(this.direction){
+					    case "right":this.body[0].x+=1;break;
+						case "left":this.body[0].x-=1;break;
+						case "top":this.body[0].y-=1;break;
+						case "bottom":this.body[0].y+=1;break;
+					   }
+					}
+					function remove(){
+					  for(var j=elements.length-1;j>=0;j--){
+					   elements[j].parentNode.removeChild(elements[j]);
+					   elements.splice(j,1);
+					  }
+					}
+					window.sanke=new Sanke();
+			   }());
+			   (function (){
+			        var that=null;
+			       function Game(){
+				     this.food=Food;
+					 this.sanke=sanke;
+					 that=this;
+					 
+				   }
+				   Game.prototype.start=function(map){
+				     this.food.init(map);
+					 this.sanke.init(map);
+				    timeId=setInterval(function(){
+					 this.sanke.move();
+					 this.sanke.init(map);
+				
+					 //判断撞墙...撞身体
+					 var maxX=map.offsetWidth/this.sanke.width;
+					 var maxY=map.offsetHeight/this.sanke.height;
+					 var sankeX=this.sanke.body[0].x;
+					 var sankeY=this.sanke.body[0].y;
+					 var foodX=this.food.x;
+					 var foodY=this.food.y;
+					 if(sankeX<0||sankeX>=maxX||sankeY<0||sankeY>=maxY){
+					 	
+					  clearInterval(timeId);
+					  
+					  hid();
+
+					  
+					 }
+					 for(var i=4;i<this.sanke.body.length;i++){
+					  if(sankeX==this.sanke.body[i].x&&sankeY==this.sanke.body[i].y){
+					  	 
+					     clearInterval(timeId)
+						 hid();
+					  }
+					 }
+					 if(sankeX==foodX&&sankeY==foodY){
+					 	score++;
+					    var last=this.sanke.body.length-1;
+						var lastX=this.sanke.body[last].x;
+						var lastY=this.sanke.body[last].y;
+					    this.sanke.body.push({x:lastX-1,y:lastY-1,color:"yellow"});
+						this.food.init(map);
+					 }
+					 
+					 }.bind(that),88);
+					 this.keydown();
+				   }
+				   Game.prototype.keydown=function(){
+				     document.addEventListener("keydown",function(e){
+					          switch (e.keyCode){
+                           case 37:this.sanke.direction="left";break;
+                           case 38:this.sanke.direction="top";break;
+                           case 39:this.sanke.direction="right";break;
+                           case 40:this.sanke.direction="bottom";break;
+                          }
+					 }.bind(that),false)
+				   }
+				   window.game=new Game();
+			   }())
+			    var txt=document.getElementById('txt');
+			    var mask=document.querySelector('.mask');
+			  	var hisArr=null;
+			    document.querySelector('.start').addEventListener('click',function(){
+			    	game.start(map);
+			    	this.style.display='none';
+			    	console.log(2);
+			    	document.getElementById('music').play();
+			    },false)
+			    function hid(){
+			    	mask.style.display='block';
+			    	document.getElementById('music').pause();
+			    }
+			    document.querySelector('#btn').addEventListener('click',function(){
+			    	var player=txt.value.trim();
+			    	if(/^\S+$/.test(player)){
+			    	}else{
+			    		player='不知姓名的游侠';
+			    	}
+			    	var his=localStorage.getItem('his')||'[]';
+			    	hisArr=JSON.parse(his);
+			    	obj={"name":player,"score":score};
+			    	hisArr.push(obj);
+			    	var hisStr=JSON.stringify(hisArr);
+			    	localStorage.setItem('his',hisStr);
+			    	mask.style.display='none'
+			    	render();
+
+			    })
+			    //sort方法的根据对象某个属性排序，MDN参考
+			    //使用  arr.sort(fn(attr)) attr用来排序的属性
+			    function fn(attr){
+						  return function(obj1,obj2){
+						  	var value1=obj1[attr];
+						  	var value2=obj2[attr];
+						  	return value1-value2;
+						    }
+						}
+						
+			    function render(){
+			    	var hisArr=JSON.parse(localStorage.getItem('his'))||'[]';
+
+					hisArr.sort(fn('score'));
+					console.log(hisArr)
+			    	document.querySelector('#tbd').innerHTML='';	
+			    	for(var i=hisArr.length-1;i>0;i--){
+			    		var tr=document.createElement('tr');
+			    		var td1=document.createElement('td');
+			    		var td2=document.createElement('td');
+			    		td1.innerText=hisArr[i].name;
+			    		td2.innerText=hisArr[i].score;
+			    		tr.appendChild(td1);
+			    		tr.appendChild(td2);
+			    		document.querySelector('#tbd').appendChild(tr);
+			    	}
+			    }
+			    render();
+	   </script>
+ </body>
+</html>
