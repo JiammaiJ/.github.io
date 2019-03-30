@@ -1,0 +1,254 @@
+body{
+	background:#f5f5f5;
+}
+/*大盒子*/
+.jd_box{
+	min-width:320px;
+	max-width:640px;
+	margin:0 auto;
+	position:relative;
+}
+/*点的背景颜色*/
+.white{
+	background:#fff;
+}
+/*顶部公用的背景图片样式*/
+.bg{
+	background:url(../images/sprites.png) no-repeat;
+	background-size:200px 200px;
+}
+
+/*顶部*/
+.jd_header{
+	width:100%;
+	height:40px;
+	position:fixed;
+	left:0;
+	top:0;
+	z-index:55;
+}
+.jd_header .box{
+	background:rgba(201,21,35,0);
+	min-width:320px;
+	max-width:640px;
+	height:40px;
+	position:relative;
+	margin:0 auto;
+}
+.jd_header .logo{
+	position:absolute;
+	left:8px;
+	top:0;
+	width:60px;
+	height:36px;
+	background-position:0 -102px;
+}
+.jd_header form{
+	width:100%;
+	height:40px;
+	padding-left:70px;
+	padding-right:50px;
+}
+.jd_header .search{
+	background-position:-57px -108px;
+	position:absolute;
+	left:80px;
+	top:10px;
+	width:20px;
+	height:20px;
+}
+.jd_header form input{
+	width:100%;
+	height:30px;
+	padding-left:40px;
+	margin-top:5px;
+	border-radius:15px;
+}
+.jd_header .enter{
+	position:absolute;
+	right:0;
+	top:0;
+	width:50px;
+	height:40px;
+	line-height:40px;
+	text-align:center;
+	color:#fff;
+}
+
+
+/*banner*/
+.jd_banner{
+	width:100%;
+	overflow:hidden;
+	position:relative;
+}
+.jd_banner ul:nth-child(1){
+	width:1000%;
+	transform:translateX(-10%);
+}
+.jd_banner ul:nth-child(2){
+	position:absolute;
+	left:50%;
+	bottom:5px;
+	transform:translateX(-50%);
+}
+.jd_banner ul:nth-child(1) li{
+	width:10%;
+	float:left;
+}
+.jd_banner ul:nth-child(1) li img{
+	display:block;
+	width:100%;
+}
+.jd_banner ul:nth-child(2) li{
+	float:left;
+	width:8px;
+	height:8px;
+	border-radius:50%;
+	box-shadow:0 0 2px #fff inset;
+	border:2px solid #fff;
+	margin-left:5px;
+}
+
+/*nav*/
+.jd_nav{
+	width:100%;
+	background:#fff;
+}
+.jd_nav ul{
+	width:100%;
+	padding:10px 0;
+}
+.jd_nav ul li{
+	width:25%;
+	float:left;
+	text-align:center;
+}
+.jd_nav ul li img{
+	display:block;
+	width:40px;
+	margin:0 auto;
+}
+.jd_nav ul li p{
+	text-align:center;
+}
+
+/*内容部分*/
+.jd_content{
+	padding:0 5px;
+}
+.jd_content section{
+	margin-top:10px;
+	background:#fff;
+	box-shadow:0 0 2px #ccc;
+}
+.jd_content section header{
+	font-size:16px;
+}
+.jd_content section .sk{
+	height:34px;
+} 
+.jd_content section .sk .bb{
+	display:block;
+	width:20px;
+	height:25px;
+	float:left;
+	background-position:0 0;
+	margin:0 10px;
+	margin-top:5px;
+}
+.jd_content section .sk .bb img{
+	width:100%;
+}
+.jd_content section .sk .time li{
+	width:16px;
+	height:16px;
+	float:left;
+	background:black;
+	color:#fff;
+	margin-top:9px;
+	margin-right:3px;
+	text-align:center;
+	line-height:16px;
+}
+.jd_content section .sk .time li:nth-child(3n){
+	background:#fff;
+	width:4px;
+	color:black;
+}
+.fl{
+	float:left;
+	padding-right:25px;
+	height:100%;
+	line-height:34px;
+}
+.fr{
+	float:right;
+}
+.more{
+	line-height:34px;
+	padding-right:15px;
+}
+
+/*第一块秒杀的内容*/
+.jd_content .cheaper{
+	width:100%;
+}
+.jd_content .cheaper li{
+	float:left;
+	width:33.333%;
+	padding:10px 0;
+}
+.jd_content.cheaper li a{
+	display:block;
+	width:100%;
+}
+.jd_content .cheaper li img{
+	display:block;
+	width:64%;
+	margin:0 auto;
+}
+.jd_content .cheaper p{
+	text-align:center;
+	line-height:25px;
+	font-size:12px;
+}
+.oldp{
+	color:#ccc;
+	text-decoration:line-through;
+}
+.nowp{
+	color:red;
+}
+
+/*一样结构的*/
+.jd_content .tit{
+	position:relative;
+	padding-left:25px;
+	height:34px;
+	line-height:34px;
+	border-bottom:1px solid #ccc;
+}
+.jd_content .tit:before{
+	content:'';
+	position:absolute;
+	left:12px;
+	top:10px;
+	width:3px;
+	height:15px;
+	background:red;
+}
+.jd_content .list{
+	width:100%;	
+}
+.jd_content .list_a{
+	display:block;
+	float:left;
+	width:50%;
+	border-right:1px solid #ccc;
+}
+.jd_content .list_b{
+	display:block;
+	float:right;
+	width:50%;
+}

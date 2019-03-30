@@ -1,0 +1,100 @@
+html,body{
+    height: 100%;
+}
+.box{
+	width:100%;
+	height:100%;
+}
+/*顶部*/
+.jd_header{
+	width:100%;
+	height:45px;
+	background:url(../images/header-bg.png);
+	background-size:1px 44px;
+	border-bottom:1px solid #ccc;
+	position:absolute;
+	left:0;
+	top:0;
+}
+.bg{
+	background:url(../images/sprites.png);
+	background-size:200px 200px;
+	padding:10px;
+	background-clip:content-box;
+}
+.jd_header .back{
+	float:left;
+	width:40px;
+	height:40px;
+	background-position:-11px 11px;
+}
+.jd_header .more{
+	float:right;
+	width:40px;
+	height:40px;
+	background-position:-51px 11px;
+}
+.jd_header form{
+	width:100%;
+	height:44px;
+	padding:0 40px;
+}
+.jd_header form input{
+	width:100%;
+	height:30px;
+	margin-top:7px;
+	border:1px solid #ccc;
+	border-radius:5px;
+}
+
+/*main*/
+.jd_main{
+	width:100%;
+	height:100%;
+	padding-top:45px;
+}
+.jd_main .main_left{
+	float:left;
+	height:100%;
+	overflow:hidden;
+}
+.jd_main .main_left ul{
+	width:90px;
+}
+.jd_main .main_left li{
+	width:90px;
+	height:50px;
+	box-sizing:border-box;
+	border-bottom:1px solid #ccc;
+	border-right:1px solid #ccc;
+	line-height:50px;
+	text-align:center;
+	background:#f3f4f5;
+	font-size:12px;
+}
+/*用overflow:hidden产生Bfc的方法让left的浮动不影响right*/
+.jd_main .main_right{
+	height:100%;
+	overflow:hidden;
+	padding:5px;
+} 
+.jd_main .main_right ul{
+	width:101%;
+}
+.jd_main .main_right .banner{
+	width:100%;
+}
+.jd_main .main_right ul li{
+	float:left;
+	width:33.33%;
+	text-align:center;
+}
+.jd_main .main_right ul li a{
+	display:block;
+	width:100%;
+}
+.jd_main .main_right ul li a img{
+	display:block;
+	width:64%;
+	margin:0 auto;
+}
