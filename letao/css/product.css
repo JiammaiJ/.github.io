@@ -1,0 +1,82 @@
+.lt_footer .btn_addCart{
+	background:#a10a0a;
+	margin-right:20px;
+}
+.lt_footer .btn_pay{
+	background:orange;
+}
+
+
+
+.lt_proItem{
+	width:100%;
+	height:auto;
+}
+.lt_proItem .item-img{
+	width:100%;
+	border-bottom:1px solid #ccc;
+}
+.lt_proItem .item-img img{
+	width:100%;
+}
+.lt_proItem .item-img p{
+	font-size:20px;
+	color:#006699;
+	padding:0 30px;
+}
+
+.lt_proItem .item-price{
+	padding:10px 20px;
+	border-bottom:1px solid #ccc;
+}
+.lt_proItem .item-price span{
+	font-size:14px;
+	margin-right:10px;
+}
+.lt_proItem .item-price span.newP{
+	font-size:22px;
+	color:red;
+}
+.lt_proItem .item-price span.oldP{
+	color:gray;
+	text-decoration:line-through;
+}
+
+.lt_proItem .item-size{
+	border-bottom:1px solid #ccc;
+	padding:10px 20px;
+}
+.lt_proItem .item-size span.size{
+	border:1px solid #ccc;
+	padding:3px;
+	display:inline-block;
+	margin-bottom:4px;
+}
+.lt_proItem .item-size span.now{
+	color:orange;
+	background:#006699;
+}
+
+.lt_proItem .item-number{
+	padding:10px 20px;
+	border-bottom:1px solid #ccc;
+}
+.lt_proItem .item-number span.jia,
+.lt_proItem .item-number span.jian{
+	display:inline-block;
+	width:28px;
+	height:28px;
+	border:1px solid #ccc;
+	text-align:center;
+	line-height:25px;
+	border-radius:5px;
+}
+.lt_proItem .item-number input{
+	display:inline-block;
+	width:28px;
+	height:28px;
+	margin:0;
+	padding:0;
+	border-radius:5px;
+	text-align:center;
+}

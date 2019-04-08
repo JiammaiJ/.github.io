@@ -1,0 +1,20 @@
+[
+	{
+		"src":"images/detail01.jpg",
+		"nowPrice":555,
+		"time":6623,
+		"proId":3
+	},
+	{
+		"src":"images/detail02.jpg",
+		"nowPrice":777,
+		"time":5657,
+		"proId":4
+	},
+	{
+		"src":"images/detail.jpg",
+		"nowPrice":999,
+		"time":355,
+		"proId":2
+	}
+]

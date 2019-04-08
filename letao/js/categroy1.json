@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "categoryName": "耐克",
+    "isDelete": 1
+  },
+  {
+    "id": 2,
+    "categoryName": "阿迪",
+    "isDelete": 1
+  },
+  {
+    "id": 3,
+    "categoryName": "安踏",
+    "isDelete": 1
+  },
+  {
+    "id": 4,
+    "categoryName": "361",
+    "isDelete": 1
+  },
+  {
+    "id": 5,
+    "categoryName": "特步",
+    "isDelete": 1
+  },
+  {
+    "id": 6,
+    "categoryName": "匡威",
+    "isDelete": 1
+  },
+  {
+    "id": 7,
+    "categoryName": "李宁",
+    "isDelete": 1
+  },
+  {
+    "id": 8,
+    "categoryName": "新百伦",
+    "isDelete": 1
+  },
+  {
+    "id": 9,
+    "categoryName": "匹克",
+    "isDelete": 1
+  },
+  {
+    "id": 10,
+    "categoryName": "AJ",
+    "isDelete": 1
+  }
+]
