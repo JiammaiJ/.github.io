@@ -18,17 +18,11 @@
 	var map = new BMap.Map("allmap"); 
 	map.centerAndZoom("成都",15);   
 	map.enableScrollWheelZoom(true); 
-	map.addControl(new BMap.NavigationControl());    
-	map.addControl(new BMap.ScaleControl());    
-	map.addControl(new BMap.OverviewMapControl());    
-	map.addControl(new BMap.MapTypeControl());    
-	map.setCurrentCity("成都"); // 仅当设置城市信息时，MapTypeControl的切换功能才能可用   
-	function myFun(result){
-		var cityName = result.name;
-		map.setCenter(cityName);
-		alert("当前定位城市:"+cityName);
-	}
-	var myCity = new BMap.LocalCity();
-	myCity.get(myFun); 
+	
+	// 覆盖区域图层测试
+	map.addTileLayer(new BMap.PanoramaCoverageLayer());
+	var stCtrl = new BMap.PanoramaControl(); //构造全景控件
+	stCtrl.setOffset(new BMap.Size(20, 20));
+	map.addControl(stCtrl);//添加全景控件
 </script>
 		
