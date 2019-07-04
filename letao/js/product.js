@@ -96,3 +96,7 @@ function getData(tip, callback) {
 function render(data) {
     $('.lt_proItem').html(template('firstTemplate', { res: data }));
 }
+
+(function() {
+    console.log(1);
+}())
